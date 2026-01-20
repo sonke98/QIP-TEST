@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài kiểm tra trắc nghiệm + tự luận</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+body {
+    background: #f4f6f9;
+    font-family: "Helvetica", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 { text-align: center; }
+
+/* ===== QUESTION ===== */
+.question {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.question h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    font-family: inherit;
+}
+.options label {
+    display: block;
+    margin: 5px 0;
+}
+
+/* ===== BUTTON ===== */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 16px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ===== TITLE ===== */
+.title-quiz table {
+    width: 190mm;
+    border-collapse: collapse;
+}
+.title-quiz th,
+.title-quiz td {
+    border: 1px solid #000;
+    padding: 5px 10px;
+}
+
+/* ===== PDF AREA ===== */
+#pdf-area {
+    width: 210mm;
+    padding: 10mm;
+    background: #fff;
+    margin: auto;
+}
+
+/* ===== PRINT ===== */
+@media print {
+    body { background: #fff; margin: 0; padding: 0; }
+    button, #result { display: none !important; }
+    .question, table {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="pdf-area">
+<div class="title-quiz">
+<table width="100%">
+    <tr>
+        <th colspan="4">
+            <h2>BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2"><b>Họ và tên:</b> <input style="border: none;" type="text" placeholder="Nhập họ tên......................" id="fullname"></td>
+        <td style="text-align:center;font-weight:bold;">Điểm Mark</td>
+        <td style="text-align:center;font-weight:bold;"> Ghi chú Mark</td>
+    </tr>
+    <tr>
+        <td colspan="2"><b>Số thẻ / ID: </b><input style="border: none;" type="text" placeholder="Nhập số thẻ..................." id="empid"></td>
+        <td rowspan="3" id="scoreCell" style="text-align:center;font-weight:bold;"></td>
+        <td rowspan="3" id="resultCell" style="text-align:center;font-weight:bold;"></td>
+    </tr>
+    <tr>
+        <td colspan="2" id="current-date"><b>Ngày Date: </b></td>
+    </tr>
+    <tr>
+        <td colspan="2"><b>Thời gian Time: </b>30 Phút</td>
+    </tr>
+</table>
+</div>
+
+<div id="quiz"></div>
+</div>
+
+<button onclick="submitQuiz()">Nộp bài</button>
+<div id="result"></div>
+
+<script>
+    // 1. Lấy đối tượng ngày giờ hiện tại
+    const today = new Date();
+
+    // 2. Lấy các thành phần ngày tháng
+    const day = today.getDate(); // Ngày (1-31)
+    const month = today.getMonth() + 1; // Tháng (0-11, cộng 1 để ra 1-12)
+    const year = today.getFullYear(); // Năm (4 chữ số)
+
+    // 3. (Tùy chọn) Lấy tên ngày trong tuần
+    const days = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
+    const dayOfWeek = days[today.getDay()];
+
+    // 4. Định dạng ngày tháng (ví dụ: 20/01/2026)
+    // Thêm số 0 ở đầu nếu ngày hoặc tháng < 10 (ví dụ: 01, 02)
+    const formattedDay = day < 10 ? '0' + day : day;
+    const formattedMonth = month < 10 ? '0' + month : month;
+    const formattedDate = `${formattedDay}/${formattedMonth}/${year}`; // Dùng template literals
+
+    // 5. Gán ngày tháng đã định dạng vào phần tử HTML có id="current-date"
+    document.getElementById("current-date").innerHTML =  `<b>Ngày Date: </b> ${dayOfWeek}, ${formattedDate}`;
+/* ====== DATA (GIỮ NGUYÊN) ====== */
+const quizData = [
+    {
+        type: "text",
+        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10điểm)",
+        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10điểm)",
+        options: { a: "Kiểm tra đủ số lượng theo quy định", b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", c: "Chỉ tập trung kiểm tra công đoạn cuối", d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
+        correct: "b",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10điểm)",
+        options: {
+            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
+            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
+            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
+            d: "SOP được treo ở khu vực gần chuyền"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10điểm)",
+        options: {
+            a: "Lỗi ngoại quan nhẹ đã được phân loại",
+            b: "Sai nhãn hoặc đóng gói sai size",
+            c: "Sản phẩm giày B được lưu kho riêng",
+            d: "Dán nhãn phân loại A/B/C rõ ràng"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10điểm)",
+        options: {
+            a: "QC phát hiện lỗi và báo cáo trễ",
+            b: "Điểm Micro-Pak trong quý là 28",
+            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
+            d: "Chưa tổ chức chia sẻ QCC trong tháng"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10điểm",
+        options: {
+            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
+            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
+            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
+            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10điểm)",
+        options: {
+            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
+            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
+            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
+            d: "Điểm Micro-Pak trong quý là 15"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10điểm)",
+        options: {
+            a: "Kiểm soát tồn kho hóa chất theo FIFO",
+            b: "Sử dụng hóa chất đúng loại, còn hạn",
+            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
+            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "text",
+        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10điểm)",
+        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        score: 10
+    },
+    {
+        type: "text",
+        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10điểm)",
+        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        score: 10
+    }
+];
+
+/* ===== RENDER ===== */
+const quizDiv = document.getElementById("quiz");
+quizData.forEach((q,i)=>{
+    let html=`<div class="question"><h3>Câu ${i+1}: ${q.question}</h3>`;
+    if(q.type==="choice"){
+        html+=`<div class="options">`;
+        for(let k in q.options){
+            html+=`<label><input type="radio" name="q${i}" value="${k}"> (${k}) ${q.options[k]}</label>`;
+        }
+        html+=`</div>`;
+    }
+    if(q.type==="text"){
+        html+=`<textarea placeholder="Nhập câu trả lời..."></textarea>`;
+    }
+    html+=`</div>`;
+    quizDiv.innerHTML+=html;
+});
+
+/* ===== SUBMIT + SCORE ===== */
+function submitQuiz(){
+    let total=0, max=0;
+    quizData.forEach((q,i)=>{
+        max+=q.score;
+        if(q.type==="choice"){
+            const s=document.querySelector(`input[name="q${i}"]:checked`);
+            if(s && s.value===q.correct) total+=q.score;
+        }
+    });
+
+    // document.getElementById("scoreCell").innerText = total+" / "+max;
+       document.getElementById("scoreCell").innerText = total;
+    const r=document.getElementById("resultCell");
+    if(total>=70){
+        r.innerText="ĐẠT";
+        r.style.color="green";
+    } else {
+        r.innerText="KHÔNG ĐẠT";
+        r.style.color="red";
+    }
+
+    window.print();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Quiz>
+    <Title>BÀI KIỂM TRA QIP CHECK LIST</Title>
+    <TotalQuestions>10</TotalQuestions>
+
+    <Question id="1">
+        <Content>Checklist của Deckers QIP Audit gồm những phần nào? (10điểm)</Content>
+        <Options>
+            <Option key="a">TP Hồ Chí Minh</Option>
+            <Option key="b">Hà Nội</Option>
+            <Option key="c">Đà Nẵng</Option>
+            <Option key="d">Cần Thơ</Option>
+        </Options>
+        <CorrectAnswer>b</CorrectAnswer>
+    </Question>
+
+    <Question id="2">
+        <Content>Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì?(10điểm)</Content>
+        <Options>
+            <Option key="a">5</Option>
+            <Option key="b">6</Option>
+            <Option key="c">7</Option>
+            <Option key="d">8</Option>
+        </Options>
+        <CorrectAnswer>c</CorrectAnswer>
+    </Question>
+
+    <Question id="3">
+        <Content>C# là ngôn ngữ lập trình do hãng nào phát triển?</Content>
+        <Options>
+            <Option key="a">Google</Option>
+            <Option key="b">Apple</Option>
+            <Option key="c">Microsoft</Option>
+            <Option key="d">Amazon</Option>
+        </Options>
+        <CorrectAnswer>c</CorrectAnswer>
+    </Question>
+
+    <Question id="4">
+        <Content>HTML dùng để làm gì?</Content>
+        <Options>
+            <Option key="a">Thiết kế cơ sở dữ liệu</Option>
+            <Option key="b">Lập trình backend</Option>
+            <Option key="c">Tạo cấu trúc trang web</Option>
+            <Option key="d">Xử lý hình ảnh</Option>
+        </Options>
+        <CorrectAnswer>c</CorrectAnswer>
+    </Question>
+
+    <Question id="5">
+        <Content>SQL dùng để làm gì?</Content>
+        <Options>
+            <Option key="a">Thiết kế giao diện</Option>
+            <Option key="b">Quản lý cơ sở dữ liệu</Option>
+            <Option key="c">Xử lý ảnh</Option>
+            <Option key="d">Soạn thảo văn bản</Option>
+        </Options>
+        <CorrectAnswer>b</CorrectAnswer>
+    </Question>
+
+    <Question id="6">
+        <Content>Đâu là hệ điều hành?</Content>
+        <Options>
+            <Option key="a">Windows</Option>
+            <Option key="b">Word</Option>
+            <Option key="c">Excel</Option>
+            <Option key="d">Chrome</Option>
+        </Options>
+        <CorrectAnswer>a</CorrectAnswer>
+    </Question>
+
+    <Question id="7">
+        <Content>CSS dùng để làm gì?</Content>
+        <Options>
+            <Option key="a">Xử lý logic</Option>
+            <Option key="b">Trang trí giao diện</Option>
+            <Option key="c">Kết nối CSDL</Option>
+            <Option key="d">Lưu trữ dữ liệu</Option>
+        </Options>
+        <CorrectAnswer>b</CorrectAnswer>
+    </Question>
+
+    <Question id="8">
+        <Content>Đâu là kiểu dữ liệu số nguyên trong C#?</Content>
+        <Options>
+            <Option key="a">string</Option>
+            <Option key="b">bool</Option>
+            <Option key="c">int</Option>
+            <Option key="d">float</Option>
+        </Options>
+        <CorrectAnswer>c</CorrectAnswer>
+    </Question>
+
+    <Question id="9">
+        <Content>MAUI dùng để phát triển loại ứng dụng nào?</Content>
+        <Options>
+            <Option key="a">Web</Option>
+            <Option key="b">Mobile & Desktop</Option>
+            <Option key="c">Embedded</Option>
+            <Option key="d">Game</Option>
+        </Options>
+        <CorrectAnswer>b</CorrectAnswer>
+    </Question>
+
+    <Question id="10">
+        <Content>XML là viết tắt của từ gì?</Content>
+        <Options>
+            <Option key="a">Extra Markup Language</Option>
+            <Option key="b">Extensible Markup Language</Option>
+            <Option key="c">Example Markup Language</Option>
+            <Option key="d">External Markup Language</Option>
+        </Options>
+        <CorrectAnswer>b</CorrectAnswer>
+    </Question>
+
+</Quiz>
