@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Bài kiểm tra trắc nghiệm + tự luận</title>
+<title>QIP Checklist</title>
 
 <style>
 * {
@@ -97,7 +97,7 @@ button {
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2>BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
         </th>
     </tr>
     <tr>
@@ -286,7 +286,18 @@ function submitQuiz(){
         r.innerText="KHÔNG ĐẠT";
         r.style.color="red";
     }
+    const nametest = document.getElementById("name-test")?.value || "TEST";
+    const name = document.getElementById("fullname")?.value || "NoName";
+    const id = document.getElementById("empid")?.value || "NoID";
 
+    const today = new Date();
+    const dateStr = today.toISOString().slice(0, 10); // yyyy-mm-dd
+
+    // Ghi nhớ title cũ
+    const oldTitle = document.title;
+
+    // ĐẶT TÊN FILE
+    document.title = `${nametesst}_${name}_${id}_${dateStr}`;
     window.print();
 }
 </script>
