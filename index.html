@@ -15,7 +15,6 @@ body {
     background: #f4f6f9;
     font-family: "Helvetica", Arial, sans-serif;
     font-size: 12px;
-    line-height: 1.4;
     margin: 0;
     padding: 20px;
 }
@@ -25,8 +24,7 @@ h2 { text-align: center; }
 /* ===== QUESTION ===== */
 .question {
     background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 10px;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -124,7 +122,32 @@ button {
 
 <button onclick="submitQuiz()">Nộp bài</button>
 <div id="result"></div>
+<script>
+let db;
 
+function openDB() {
+    const request = indexedDB.open("QIP_Quiz_DB", 1);
+
+    request.onupgradeneeded = function (e) {
+        db = e.target.result;
+        db.createObjectStore("results", {
+            keyPath: "id",
+            autoIncrement: true
+        });
+    };
+
+    request.onsuccess = function (e) {
+        db = e.target.result;
+        console.log("IndexedDB ready");
+    };
+
+    request.onerror = function () {
+        alert("Không mở được IndexedDB");
+    };
+}
+
+openDB();
+</script>
 <script>
     // 1. Lấy đối tượng ngày giờ hiện tại
     const today = new Date();
@@ -182,7 +205,7 @@ const quizData = [
             c: "Sản phẩm giày B được lưu kho riêng",
             d: "Dán nhãn phân loại A/B/C rõ ràng"
         },
-        correct: "c",
+        correct: "b",
         score: 10
     },
     {
@@ -206,7 +229,7 @@ const quizData = [
             c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
             d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
         },
-        correct: "c",
+        correct: "b",
         score: 10
     },
     {
@@ -266,39 +289,83 @@ quizData.forEach((q,i)=>{
 });
 
 /* ===== SUBMIT + SCORE ===== */
-function submitQuiz(){
-    let total=0, max=0;
-    quizData.forEach((q,i)=>{
-        max+=q.score;
-        if(q.type==="choice"){
-            const s=document.querySelector(`input[name="q${i}"]:checked`);
-            if(s && s.value===q.correct) total+=q.score;
+function submitQuiz() {
+    if (!db) {
+        alert("Database chưa sẵn sàng, vui lòng thử lại");
+        return;
+    }
+    let totalScore = 0;
+    let maxScore = 0;
+
+    quizData.forEach((q, i) => {
+        maxScore += q.score;
+
+        if (q.type === "choice") {
+            const s = document.querySelector(`input[name="q${i}"]:checked`);
+            if (s && s.value === q.correct) {
+                totalScore += q.score;
+            }
         }
     });
 
-    // document.getElementById("scoreCell").innerText = total+" / "+max;
-       document.getElementById("scoreCell").innerText = total;
-    const r=document.getElementById("resultCell");
-    if(total>=70){
-        r.innerText="ĐẠT";
-        r.style.color="green";
-    } else {
-        r.innerText="KHÔNG ĐẠT";
-        r.style.color="red";
+    // ===== ĐIỀN ĐIỂM + GHI CHÚ =====
+    document.getElementById("scoreCell").innerText = totalScore;
+
+    const resultCell = document.getElementById("resultCell");
+    const ketQua = totalScore >= 70 ? "ĐẠT" : "KHÔNG ĐẠT";
+
+    resultCell.innerText = ketQua;
+    resultCell.style.color = totalScore >= 70 ? "green" : "red";
+
+    // ===== LẤY THÔNG TIN NGƯỜI THI =====
+    const nametest = document.getElementById("name-test")?.value || "QIP_TEST";
+    const hoTen = document.getElementById("fullname")?.value.trim();
+    const soThe = document.getElementById("empid")?.value.trim();
+
+    if (!hoTen || !soThe) {
+        alert("Vui lòng nhập Họ tên và Số thẻ");
+        return;
     }
-    const nametest = document.getElementById("name-test")?.value || "TEST";
-    const name = document.getElementById("fullname")?.value || "NoName";
-    const id = document.getElementById("empid")?.value || "NoID";
 
-    const today = new Date();
-    const dateStr = today.toISOString().slice(0, 10); // yyyy-mm-dd
+    const now = new Date();
+    const timeStr = now.toLocaleString();
+    const dateStr = now.toISOString().slice(0, 10);
 
-    // Ghi nhớ title cũ
-    const oldTitle = document.title;
+    // ===== NỘI DUNG TXT =====
+    const txtContent = `
+${timeStr}
+HoTen: ${hoTen}
+SoThe: ${soThe}
+Diem: ${totalScore} / ${maxScore}
+KetQua: ${ketQua}
+------------------------
+`;
 
-    // ĐẶT TÊN FILE
-    document.title = `${nametesst}_${name}_${id}_${dateStr}`;
-    window.print();
+    // ===== LƯU INDEXEDDB =====
+    const transaction = db.transaction(["results"], "readwrite");
+    const store = transaction.objectStore("results");
+
+    store.add({
+        time: timeStr,
+        hoTen,
+        soThe,
+        score: totalScore,
+        ketQua,
+        content: txtContent
+    });
+
+    transaction.oncomplete = () => {
+
+        // ===== ĐẶT TÊN FILE PRINT =====
+        const oldTitle = document.title;
+        document.title = `${nametest}_${hoTen}_${soThe}_${dateStr}`;
+
+        alert("Nộp bài thành công!");
+        window.print();
+
+        // phục hồi title
+        document.title = oldTitle;
+    };
 }
 </script>
 
