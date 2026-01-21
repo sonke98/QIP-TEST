@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>QIP Checklist</title>
+<title>KPI và tiêu chuẩn Deckers</title>
 
 <style>
 * {
@@ -34,7 +34,7 @@ h2 { text-align: center; }
 }
 textarea {
     width: 100%;
-    min-height: 80px;
+    min-height: 60PX;
     padding: 10px;
     font-family: inherit;
 }
@@ -85,10 +85,6 @@ button {
         border-radius: 0 !important;
     }
 }
-textarea
-{
-    min-height: 107px;
-}
 </style>
 </head>
 
@@ -99,7 +95,7 @@ textarea
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA CÁCH TÍNH KPI & TIÊU CHUẨN CỦA DECKERS</h2>
         </th>
     </tr>
     <tr>
@@ -178,103 +174,104 @@ openDB();
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
     {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "%PA là gì? (10 điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
+            a: "Tỷ lệ giày bị rớt kiểm sau tái chế", 
+            b: "Tỷ lệ giày lỗi trong lần kiểm hàng đầu tiên", 
+            c: "Tỷ lệ giày không đạt khi kiểm ở nước ngoài", 
+            d: "Tỷ lệ PO rớt kiểm FI" 
+    },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
+        question: "Khi nào một PO bị rớt kiểm theo AQL? (10 điểm)",
         options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
+            a: "Khi có bất kỳ lỗi nào",
+            b: "Khi số đôi lỗi > số lỗi REJECT trong bảng AQL",
+            c: "Khi số đôi lỗi ≥ số lỗi ACCEPT trong bảng AQL",
+            d: "Khi PO trên 300,000 đôi"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
+        question: "Khi nào một PO bị “Quality Lock”? (10 điểm)",
         options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
-        },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
-        options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
-        options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+            a: "Khi kiểm hàng xuất không đạt",
+            b: "Khi tái chế không đạt",
+            c: "Khi hàng được kiểm tại nước ngoài không đạt",
+            d: "Khi công nhân không kiểm tra tem size"
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
+        question: "%Fail FI (Prs) đo điều gì? (10 điểm)",
         options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
+            a: "Tỉ lệ PO rớt kiểm so với tổng PO kiểm",
+            b: "Tỉ lệ đôi không đạt trong các PO bị rớt so với tổng đôi được kiểm",
+            c: "Tỉ lệ đôi phải tái chế trong PO",
+            d: "Tỉ lệ đôi được kiểm ở nước ngoài"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
+        question: "Giày B có đặc điểm nào sau đây? (10 điểm)",
         options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+            a: "Có lỗi lớn, đau chân, không thể sửa",
+            b: "Không lỗi công năng, có lỗi thẩm mỹ nhỏ",
+            c: "Giày hoàn hảo, được đóng gói xuất",
+            d: "Được tái chế nhiều lần"
+        },
+        correct: "b",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Mỗi PO chỉ được tái chế tối đa mấy lần? (10 điểm)",
+        options: {
+            a: "Không giới hạn",
+            b: "2 lần",
+            c: "1 lần duy nhất",
+            d: "3 lần"
         },
         correct: "c",
         score: 10
     },
+    {
+        type: "choice",
+        question: "Mục tiêu Deckers đối với %Fail FI (Prs) là? (10 điểm)",
+        options: {
+            a: "< 4%",
+            b: "< 2%",
+            c: "< 0.4%",
+            d: "< 10%"
+        },
+        correct: "c",
+        score: 10
+    }, 
     {
         type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
+        question: "Tính %PA: (10 điểm) <br>•  Số đôi lỗi: 18 đôi <br>•  Số đôi được kiểm: 950 đôi <br> Yêu cầu: <br>Tính %PA và cho biết đạt hay không nếu yêu cầu < 2%. <br> Lời giải: %PA = ",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
         score: 10
     },
     {
         type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
+        question: "Tính %Fail FI (Prs): (10 điểm) <br>• Tổng số đôi của các PO được kiểm: 12,500 đôi <br>• Tổng số đôi không đạt: 430 đôi<br>Lời giải: %Fail FI (Prs) = ",
+        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        score: 10
+    },
+    {
+        type: "text",
+        question: "Tính tỉ lệ Quality Lock theo “chỉ lệnh”: (10 điểm) <br>• Tháng 9 có: 3 chỉ lệnh bị Quality Lock<br>• Tháng 8 nhà máy xuất: 600 chỉ lệnh<br> Yêu cầu: <br>Tính tỷ lệ Quality Lock và so sánh với mục tiêu < 0.4%.<br> Lời giải: Tỷ lệ = ",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
         score: 10
     }

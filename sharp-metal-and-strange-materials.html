@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>QIP Checklist</title>
+<title>SHARP METAL AND STRANGE MATERIALS</title>
 
 <style>
 * {
@@ -87,7 +87,7 @@ button {
 }
 textarea
 {
-    min-height: 107px;
+    min-height: 200px;
 }
 </style>
 </head>
@@ -99,7 +99,7 @@ textarea
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA CHÍNH SÁCH CHUNG VỀ PHÒNG NGỪA KIM LOẠI SẮC NHỌN VÀ VẬT LẠ V3.0</h2>
         </th>
     </tr>
     <tr>
@@ -178,105 +178,136 @@ openDB();
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
     {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "Mục tiêu chính của chính sách kiểm soát kim gãy và dị vật kim loại trong giày là gì? (5 điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
-        options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
-        options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
+            a: "Giảm chi phí sản xuất", 
+            b: "Đảm bảo an toàn cho người mang giày và bảo vệ uy tín nhà máy ", 
+            c: "Giảm thời gian kiểm tra", 
+            d: "Hạn chế số lượng công nhân" 
         },
         correct: "b",
-        score: 10
+        score: 5
     },
     {
         type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
+        question: "Chính sách “One Needle” quy định? (5 điểm)",
         options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
+            a: "Mỗi công nhân có thể được cấp 2 kim để dự phòng",
+            b: "Mỗi máy may chỉ được cấp 1 kim, không có kim dự phòng",
+            c: "Cán bộ chuyền được giữ nhiều kim để tiện thay thế",
+            d: "Công nhân được tự thay kim khi bị gãy"
         },
         correct: "c",
-        score: 10
+        score: 5
     },
     {
         type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
+        question: "Tất cả đế thành phẩm, mũ giày may thành phẩm và giày thành phẩm phải được kiểm tra? (5 điểm)",
         options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+            a: "50% bằng X-ray",
+            b: "100% bằng máy dò kim loại",
+            c: "10% bằng mắt thường",
+            d: "Ngẫu nhiên bởi QIP"
         },
         correct: "b",
-        score: 10
+        score: 5
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
+        question: "Nếu sau khi cách ly và kiểm tra bằng máy X-ray vẫn không tìm thấy mảnh kim, phải làm gì tiếp theo? (5 điểm)",
         options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
+            a: "Bỏ qua và cho sản phẩm vào sản xuất",
+            b: "Lập biên bản kim gãy mất mảnh, có chữ ký quản lý sản xuất & QC",
+            c: "Chỉ báo cáo nội bộ, không cần gửi Deckers",
+            d: "Cho công nhân chịu trách nhiệm tự xử lý"
         },
         correct: "c",
-        score: 10
+        score: 5
     },
     {
         type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
+        question: "Khi xảy ra sự cố kim loại/dị vật, tất cả giày thuộc PO liên quan phải? (5 điểm)",
         options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+            a: "Kiểm tra ngẫu nhiên 10%",
+            b: "Kiểm tra 100% bằng X-ray",
+            c: "Được tái chế toàn bộ",
+            d: "Đưa vào kho chờ xử lý"
         },
-        correct: "c",
-        score: 10
+        correct: "b",
+        score: 5
+    },
+    {
+        type: "choice",
+        question: "Giày được đóng gói lại (tái chế) (repack) thì phải? (5 điểm)",
+        options: {
+            a: "Không cần kiểm tra lại",
+            b: "Kiểm tra ngẫu nhiên 5%",
+            c: "Kiểm tra lại 100% bằng máy dò kim loại/X-ray, bao gồm cả bao bì",
+            d: "Chỉ QC kiểm tra bằng mắt thường"
+        },
+        correct: "b",
+        score: 5
+    },
+    {
+        type: "choice",
+        question: "Tất cả kéo, dao nhỏ, kìm bấm chỉ trong xưởng phải được quản lý như thế nào? (5 điểm)",
+        options: {
+            a: "Cất trong ngăn kéo riêng của công nhân",
+            b: "Buộc chặt vào bàn làm việc",
+            c: "Được tự do di chuyển giữa các chuyền",
+            d: "Giao cho công nhân giữ cá nhân"
+        },
+        correct: "b",
+        score: 5
+    },
+    {
+        type: "choice",
+        question: "Mức phạt nếu phát hiện kim/vật nhọn trong PO > 5000 đôi tại DC là gì? (5 điểm)",
+        options: {
+            a: "5,000 USD/PO",
+            b: "1 USD/đôi",
+            c: "10,000 USD",
+            d: "0.5 USD/đôi"
+        },
+        correct: "b",
+        score: 5
+    },
+    {
+        type: "choice",
+        question: "Trong trường hợp kim/vật nhọn gây thương tích cho người tiêu dùng do lỗi nhà máy, ngoài bồi thường, nhà máy còn bị phạt thêm bao nhiêu? (5 điểm)",
+        options: {
+            a: "2,000 USD",
+            b: "5,000 USD",
+            c: "10,000 USD",
+            d: "20,000 USD"
+        },
+        correct: "b",
+        score: 5
+    },
+    {
+        type: "choice",
+        question: "Khi nào một PO sẽ bị LOCK? (5 điểm)",
+        options: {
+            a: "Có từ 2 đôi giày trở lên phát hiện có vật kim loại/vật lạ",
+            b: "Khi công nhân báo mất kim nhưng đã tìm thấy đầy đủ mảnh",
+            c: "Khi máy dò kim loại hỏng 1 ngày",
+            d: "Khi PO nhỏ hơn 5,000 đôi"
+        },
+        correct: "b",
+        score: 5
     },
     {
         type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
+        question: "Quy trình xử lý kim gãy khi đủ mãnh: (25 điểm)",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
+        score: 25
     },
     {
         type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
+        question: "Quy trình xử lý kim gãy khi không đủ mãnh: (25 điểm)",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
+        score: 25
     }
 ];
 

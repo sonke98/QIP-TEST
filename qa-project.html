@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>QIP Checklist</title>
+<title>GIỚI THIỆU DỰ ÁN QA</title>
 
 <style>
 * {
@@ -99,7 +99,7 @@ textarea
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA GIỚI THIỆU VỀ DỰ ÁN QA</h2>
         </th>
     </tr>
     <tr>
@@ -178,104 +178,123 @@ openDB();
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
     {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "QIP là gì? (10điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
-        options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
-        options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
+            a: "Chương trình Kiểm tra Chất lượng", 
+            b: "Chương trình Tích hợp Chất lượng", 
+            c: "Quy trình Cải tiến Chất lượng", 
+            d: "Quy trình Nội bộ Chất lượng" 
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
+        question: "Mục tiêu chính của chương trình QIP là gì? (10điểm)",
         options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
-        options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+            a: "Giảm chi phí sản xuất",
+            b: "Thiết lập hệ thống vận hành tiêu chuẩn về kiểm soát chất lượng",
+            c: "Nâng cao năng suất lao động",
+            d: "Quản lý tiến độ giao hàng"
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
+        question: "Phạm vi của QIP bao gồm nội dung nào dưới đây? (10điểm)",
         options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
+            a: "Kiểm tra nguyên liệu thô",
+            b: "Kiểm tra thành phẩm",
+            c: "Đào tạo và đánh giá QC",
+            d: "Cả a,b,c đúng"
         },
-        correct: "c",
+        correct: "d",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
+        question: "Hướng dẫn QIP được thiết kế như loại tài liệu nào? (10điểm)",
         options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+            a: "Hướng dẫn kỹ thuật sản phẩm",
+            b: "Hướng dẫn làm việc tiêu chuẩn",
+            c: "Sổ tay nhân viên",
+            d: "Hướng dẫn bảo trì thiết bị"
         },
-        correct: "c",
+        correct: "b",
         score: 10
     },
     {
-        type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        type: "choice",
+        question: "Nội dung của QIP Guideline bao gồm những nội dung nào? (10điểm)",
+        options: {
+            a: "Hướng dẫn làm việc",
+            b: "Sơ đồ quy trình",
+            c: "Định dạng báo cáo QC",
+            d: "Cả a, b,c đúng"
+        },
+        correct: "d",
         score: 10
     },
     {
-        type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        type: "choice",
+        question: "Ai chịu trách nhiệm kiểm soát chất lượng trong quá trình sản xuất? (10 điểm)",
+        options: {
+            a: "TQC và RQC",
+            b: "IMQC",
+            c: "CFQC",
+            d: "HR Department"
+        },
+        correct: "a",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "QIP 1.0 tập trung vào điều gì? (10điểm)",
+        options: {
+            a: "Tăng năng suất sản xuất",
+            b: "Tiêu chuẩn hóa công việc của QC",
+            c: "Đổi mới thiết kế sản phẩm",
+            d: "Giảm chi phí nguyên vật liệu"
+        },
+        correct: "b",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Tần suất thực hiện QIP Audit nội bộ của nhà máy là? (10 điểm)",
+        options: {
+            a: "Mỗi tuần một lần",
+            b: "Mỗi tháng một lần",
+            c: "Ít nhất 2 lần mỗi tháng",
+            d: "Mỗi quý một lần"
+        },
+        correct: "a",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "QCC (Quality Control Circle) là gì? (10điểm)",
+        options: {
+            a: "Cuộc họp quản lý định kỳ",
+            b: "Nhóm nhân viên cùng thực hiện hoạt động cải tiến chất lượng",
+            c: "Bộ phận tài chính kiểm soát chi phí",
+            d: "Bộ phận giám sát sản xuất"
+        },
+        correct: "b",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Chính sách “3 Don’ts” trong QIP nhằm? (10điểm)",
+        options: {
+            a: "Ngăn ngừa các hành vi gian lận trong QC",
+            b: "Thực hiện nguyên tắc “Không chấp nhận – Không tạo ra – Không truyền lỗi”",
+            c: "Kiểm soát vật tư nhập kho",
+            d: "Cải thiện hiệu suất thiết bị"
+        },
+        correct: "b",
         score: 10
     }
 ];
@@ -292,7 +311,7 @@ quizData.forEach((q,i)=>{
         html+=`</div>`;
     }
     if(q.type==="text"){
-    html+=`<textarea data-index="${i}" placeholder="Nhập câu trả lời..."></textarea>`;
+        html+=`<textarea placeholder="Nhập câu trả lời..."></textarea>`;
     }
     html+=`</div>`;
     quizDiv.innerHTML+=html;
@@ -315,20 +334,6 @@ function submitQuiz() {
             if (s && s.value === q.correct) {
                 totalScore += q.score;
             }
-        }
-        if (q.type === "text") {
-            const textarea = document.querySelector(`textarea[data-index="${i}"]`);
-            const answer = textarea?.value.toLowerCase().trim() || "";
-
-            let matched = 0;
-            q.keywords.forEach(k => {
-                if (answer.includes(k.toLowerCase())) matched++;
-            });
-
-            const ratio = matched / q.keywords.length;
-
-            if (ratio >= 0.8) totalScore += q.score;
-            else if (ratio >= 0.5) totalScore += q.score / 2;
         }
     });
 

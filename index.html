@@ -21,31 +21,39 @@
         flex-wrap: wrap;
         gap: 50px;
     }
-    .container a button
-    {
-        border-radius: 20px;
-        width: 250px;
-        height: 150px;
-        font-size: 1.5em;
-        background: darkgreen;
-        color: #fff;
-        box-shadow: 5px 5px 5px rgba(100, 82, 19, .5);
+    .container a button {
+    border-radius: 20px;
+    width: 250px;
+    height: 150px;
+    font-size: 1.1em;
+    background: darkgreen;
+    color: #fff;
+    box-shadow: 0 5px 10px yellow, 0 -5px 10px yellow;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    white-space: normal;
+    will-change: transform;
+    }
+    .container a button:hover {
+    transform: scale(1.1);
+    background-color: darkcyan;
     }
 </style>
 </head>
 <body>
-    <h1>DANH SÁCH BÀI KIỂM TRA CỦA QIP</h1>
+    <h1>DANH SÁCH BÀI KIỂM TRA CỦA QIP - QIP TEST LIST</h1>
     <div class="container">
-        <a href="qa-checklist.html"><button>QIP CHECKLIST</button></a>
-        <a><button>QUẢN LÝ VÀ LƯU TRỮ GIÀY MẪU, BẢNG MÀU</button></a>
-        <a><button>MICRO PAK</button></a>
-        <a><button>QIP 2.0</button></a>
-        <a><button>GIỚI THIỆU VỀ DỰ ÁN QA</button></a>
-        <a><button>CHÍNH SÁCH CHUNG VỀ PHÒNG NGỪA KIM LOẠI SẮC NHỌN VÀ VẬT LẠ V3.0</button></a>
-        <a><button>MPA</button></a>
-        <a><button>KPI VÀ CÁCH TÍNH ĐIỂM CỦA DECKERS</button></a>
-        <a><button>COMING SOON...</button></a>
-        <a><button>COMING SOON...</button></a>
+        <a href="qa-checklist.html"><button>HẠNG MỤC KIỂM TRA NỘI BỘ <br> QIP CHECKLIST</button></a>
+        <a href="mcs-manager.html"><button>QUẢN LÝ VÀ LƯU TRỮ GIÀY MẪU, BẢNG MÀU <br> MCS AND COLOR SWATCH MANAGER</button></a>
+        <a href="micro-pak.html"><button>MICRO PAK</button></a>
+        <a href="qa20.html"><button>QIP 2.0</button></a>
+        <a href="qa-project.html"><button>GIỚI THIỆU VỀ DỰ ÁN QA <br> ABOUT QA PROJECT</button></a>
+        <a href="sharp-metal-and-strange-materials.html"><button>CHÍNH SÁCH CHUNG VỀ PHÒNG NGỪA KIM LOẠI SẮC NHỌN VÀ VẬT LẠ V3.0 <br> GENERAL POLICY ON PREVENTION OF SHARP METALS AND FOREIGN OBJECTS V3.0</button></a>
+        <a href="mpa.html"><button>MPA</button></a>
+        <a href="caculate-kpi-and-deckers-standard.html"><button>KPI VÀ CÁCH TÍNH ĐIỂM CỦA DECKERS <br> HOW TO CACULATE KPI AND DECKERS STANDARD</button></a>
+        <a><button style="background: gray;">COMING SOON...</button></a>
+        <a><button style="background: gray;">COMING SOON...</button></a>
     </div>
 </body>
 </html>

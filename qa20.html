@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>QIP Checklist</title>
+<title>QA 2.0</title>
 
 <style>
 * {
@@ -87,7 +87,7 @@ button {
 }
 textarea
 {
-    min-height: 107px;
+    min-height: 200px;
 }
 </style>
 </head>
@@ -99,7 +99,7 @@ textarea
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA QIP 2.0</h2>
         </th>
     </tr>
     <tr>
@@ -178,105 +178,76 @@ openDB();
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
     {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "Mục tiêu chính của QIP 2.0 là gì? (10 điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
-        options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
-        options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
+            a: "Giảm chi phí nguyên vật liệu", 
+            b: "Tạo ra chất lượng trong quá trình sản xuất", 
+            c: "Tăng số lượng công nhân trên chuyền", 
+            d: "Tăng tốc độ sản xuất" 
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
+        question: "RFT (Right First Time) được định nghĩa là gì? (10 điểm)",
         options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
+            a: "Tỷ lệ sản phẩm cần xử lý lại sau khi xuất kho",
+            b: "Tỷ lệ sản phẩm đạt tiêu chuẩn ngay từ lần đầu mà không cần xử lý thêm",
+            c: "Số lỗi tìm thấy trong chuyền may thí điểm",
+            d: "Số sản phẩm sản xuất mỗi giờ"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
+        question: "(Tính RFT): Chuyến may sản xuất 1500 đôi, sau QC: 1 đôi báo phế, 2 đôi B-grade, 25 đôi cần sửa. RFT là bao nhiêu? (10 điểm)",
         options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+            a: "97.5%",
+            b: "98.13%",
+            c: "99%",
+            d: "96.8%"
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
+        question: "(Tính RFT): Assembly XX, sản lượng 2000 đôi, QC phát hiện 3 đôi báo phế, 4 đôi B-grade, 20 đôi cần sửa. RFT là bao nhiêu? (10 điểm)",
         options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
+            a: "98.65%",
+            b: "98.85%",
+            c: "99%",
+            d: "97.85%"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
+        question: "Mục tiêu của “No QC Plan” (NQP) là gì? (10 điểm)",
         options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+            a: "Chỉ kiểm tra sản phẩm cuối cùng",
+            b: "Chuyển trọng tâm sang kiểm soát quá trình, giảm TQC và người sửa giày",
+            c: "Loại bỏ RQC",
+            d: "Tăng chi phí chất lượng"
         },
-        correct: "c",
+        correct: "b",
         score: 10
     },
     {
         type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
+        question: "Ở cột mốc 1 giai đoạn 1: Loại bỏ người sửa giày: (25 điểm) <br><br><i>(TQC và CBHT)</i>",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
+        score: 25
     },
     {
         type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
+        question: "Điều kiện để đạt cột mốc nâng cấp cột mốc 1 lên cột mốc 2. (25 điểm)",
         keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
+        score: 25
     }
 ];
 

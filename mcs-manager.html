@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>QIP Checklist</title>
+<title>MCS MANAGER</title>
 
 <style>
 * {
@@ -87,7 +87,7 @@ button {
 }
 textarea
 {
-    min-height: 107px;
+    min-height: 120px;
 }
 </style>
 </head>
@@ -99,7 +99,7 @@ textarea
 <table width="100%">
     <tr>
         <th colspan="4">
-            <h2 id="name-test">BÀI KIỂM TRA TRẮC NGHIỆM QIP CHECKLIST</h2>
+            <h2 id="name-test">BÀI KIỂM TRA QUẢN LÝ VÀ LƯU TRỮ GIÀY MẪU, BẢNG MÀU</h2>
         </th>
     </tr>
     <tr>
@@ -178,104 +178,123 @@ openDB();
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
     {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "Có những loại bảng màu nào? (10 điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
-        options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
-        options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
+            a: "Bảng màu vật tư, bảng màu gia công, bảng màu khai thác", 
+            b: "Bảng màu khai thác, bảng màu gia công, bảng màu làm việc", 
+            c: "Bảng màu gia công, bảng màu làm việc, bảng màu tem đỏ", 
+            d: "Bảng màu khai thác, bảng màu vật tư, bảng màu A4" 
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
+        question: "Bảng màu làm việc tại nhà máy do đơn vị nào làm ? (10 điểm)",
         options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
+            a: "Trung tâm khai thác mẫu (DC)",
+            b: "Kỹ thuật",
+            c: "QC kho vật tư của nhà máy",
+            d: "QC của khách hàng"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
+        question: "Khi ký mẫu sản xuất, hiện trường cần bảng màu nào để mang ký mẫu ? (10 điểm)",
         options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
+            a: "Bảng màu làm việc",
+            b: "Bảng màu gia công",
+            c: "Bảng màu khai thác",
+            d: "Không cần bảng màu để ký mẫu"
+        },
+        correct: "a",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Các đơn vị gia công bên ngoài thường sử dụng bảng màu nào? (10 điểm)",
+        options: {
+            a: "Bảng màu vật tư",
+            b: "Bảng màu làm việc",
+            c: "Bảng màu gia công",
+            d: "Bảng màu khai thác"
+        },
+        correct: "c",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Khi nào MCS không sử dụng được nữa? (10 điểm)",
+        options: {
+            a: "Biến dạng màu sắc, cũ rách vượt phạm vi chấp nhận",
+            b: "Chỉnh sửa, thay đổi 3 lần",
+            c: "Dùng trên 3 năm",
+            d: "Cả a, b và c đều đúng"
+        },
+        correct: "d",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "MCS khi nào là hợp lệ? (10 điểm)",
+        options: {
+            a: "Có chữ ký chủ quản, mạc treo, đục lỗ dưới đế",
+            b: "Có chữ ký khách hàng, mạc treo, đục lỗ dưới đế",
+            c: "a và b đều đúng",
+            d: "a và b đều sai"
         },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
+        question: "Khi mượn hoặc sử dụng giày mẫu để ký mẫu cần phải chú ý điều gì? (10 điểm)",
         options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
+            a: "Giày mẫu phải chuẩn, sạch sẽ không được dơ",
+            b: "Mạc treo giày mẫu phải có mộc đỏ và chữ ký của khách hàng kèm chữ 'production'",
+            c: "Chỉ cần là giày mẫu, không cần phải có mộc hoặc chữ ký của khách hàng",
+            d: "Miễn từ phòng giày mẫu cho mượn thì đó là giày mẫu, không cần quan tâm những vấn đề khác"
+        },
+        correct: "b",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Khi ký mẫu, trường hợp thấy giày mẫu có màu sắc khác với bảng màu thì phải xử lý như thế nào? (10 điểm)",
+        options: {
+            a: "Mang trả về phòng giày mẫu và báo với nhân viên về vấn đề trên để xác nhận lại",
+            b: "Việc giày mẫu và bảng màu có chênh lệch về màu sắc với nhau là bình thường vẫn có thể ký mẫu được",
+            c: "Nếu do yếu tố khách quan (tính chất vật liệu, hao mòn, ánh sáng,...) dẫn đến sai màu thì vẫn ký mẫu được bình thường",
+            d: "Ba ý kiến trên đều đúng"
+        },
+        correct: "a",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Nhiệt độ và độ ẩm tiêu chuẩn để lưu trữ MCS và bảng màu là bao nhiêu? (10 điểm)",
+        options: {
+            a: "Nhiệt độ: 20°C đến 35°C, độ ẩm: 50% đến 65%",
+            b: "Nhiệt độ: 25°C đến 30°C, độ ẩm: 55% đến 60%",
+            c: "Nhiệt độ: 20°C đến 30°C, độ ẩm: 50% đến 60%",
+            d: "Nhiệt độ: 30°C đến 35°C, độ ẩm: 55% đến 65%"
         },
         correct: "c",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
+        question: "Khi giày mẫu và bảng màu vật tư bị mất phụ kiện hoặc vật tư thì phải xử lý như thế nào?? (10 điểm)",
         options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
+            a: "Liên hệ với bên kho vật tư nhờ cung cấp lại những vật tư bị mất",
+            b: "Liên hệ với đơn vị kỹ thuật nhờ họ cung cấp lại vật tư bị mất",
+            c: "Báo phế vì vật tư trên giày mẫu và bảng màu phải được khách hàng đồng ý và ký tên không thay thế bằng vật tư ở kho vật tư được",
+            d: "Nhờ kỹ thuật liên hệ với trung tâm khai thác (DC) nhờ họ cung cấp lại vật tư mới"
         },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
-        type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        correct: "d",
         score: 10
     }
 ];
@@ -292,7 +311,7 @@ quizData.forEach((q,i)=>{
         html+=`</div>`;
     }
     if(q.type==="text"){
-    html+=`<textarea data-index="${i}" placeholder="Nhập câu trả lời..."></textarea>`;
+        html+=`<textarea placeholder="Nhập câu trả lời..."></textarea>`;
     }
     html+=`</div>`;
     quizDiv.innerHTML+=html;
@@ -315,20 +334,6 @@ function submitQuiz() {
             if (s && s.value === q.correct) {
                 totalScore += q.score;
             }
-        }
-        if (q.type === "text") {
-            const textarea = document.querySelector(`textarea[data-index="${i}"]`);
-            const answer = textarea?.value.toLowerCase().trim() || "";
-
-            let matched = 0;
-            q.keywords.forEach(k => {
-                if (answer.includes(k.toLowerCase())) matched++;
-            });
-
-            const ratio = matched / q.keywords.length;
-
-            if (ratio >= 0.8) totalScore += q.score;
-            else if (ratio >= 0.5) totalScore += q.score / 2;
         }
     });
 
