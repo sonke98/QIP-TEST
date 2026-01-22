@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Danh sách bài kiểm tra QIP</title>
 <style type="text/css">
     body
@@ -22,15 +23,15 @@
         gap: 50px;
     }
     .container a button {
-    border-radius: 20px;
+    border-radius: 10px;
     width: 250px;
     height: 150px;
     font-size: 1.1em;
     background: darkgreen;
     color: #fff;
-    box-shadow: 0 5px 10px yellow, 0 -5px 10px yellow;
     border: none;
     cursor: pointer;
+    box-shadow: 5px 5px 5px black;
     transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
     white-space: normal;
     will-change: transform;
@@ -39,6 +40,23 @@
     transform: scale(1.1);
     background-color: darkcyan;
     }
+    @media (max-width: 768px) {
+    .container {
+        gap: 20px;
+    }
+
+    .container a button {
+        width: 80vw;
+        height: auto;
+        min-height: 120px;
+        font-size: 1em;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+}
 </style>
 </head>
 <body>
