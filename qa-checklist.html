@@ -178,107 +178,148 @@ openDB();
     document.getElementById("current-date").innerHTML =  `<b>Ngày Date: </b> ${dayOfWeek}, ${formattedDate}`;
 /* ====== DATA (GIỮ NGUYÊN) ====== */
 const quizData = [
-    {
-        type: "text",
-        question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
+    // {
+    //     type: "text",
+    //     question: "Checklist của Deckers QIP Audit gồm những phần nào? (10 điểm)",
+    //     keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+    //     score: 10
+    // },
     {
         type: "choice",
-        question: "Trong kiểm soát chất lượng trên chuyền (TQC), yêu cầu quan trọng nhất để đảm bảo hệ thống QIP vận hành hiệu quả là gì? (10 điểm)",
+        question: "QIP Checklist bao gồm những hạng mục đánh giá chính nào? (10 điểm)",
         options: { 
-            a: "Kiểm tra đủ số lượng theo quy định", 
-            b: "Ghi nhận dữ liệu chất lượng trung thực và kịp thời", 
-            c: "Chỉ tập trung kiểm tra công đoạn cuối", 
-            d: "Chỉ báo cáo khi phát sinh lỗi nghiêm trọng" },
+            a: "Cấu trúc tổ chức QIP", 
+            b: "Kiểm soát chất lượng vật tư và quản lý", 
+            c: "Kiểm soát chất lượng trên chuyền", 
+            d: "Yêu cầu chất lượng và cải tiến",
+            e: "Phòng kiểm hàng và quản lý kho",
+            f: "Tất cả đều đúng"
+        },
+        correct: "f",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Qui trình kiểm toán QIP nội bộ được thực hiện như thế nào? (10 điểm)",
+        options: { 
+            a: "Thực hiện 2 lần trên tháng", 
+            b: "Đánh giá chất lượng sản xuất trên chuyền", 
+            c: "Kiểm tra khả năng đánh giá của TQC/RQC", 
+            d: "Tất cả đều đúng" },
+        correct: "d",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Yêu cầu công nhân thực hiện EIQ cần làm gì? (10 điểm)",
+        options: {
+            a: "Hiểu được tầm quan trọng của EIQ đến chất lượng",
+            b: "Cồng nhân phải nhìn - làm - và kiểm tra chất lượng",
+            c: "Cán bộ thường xuyên theo dõi và kiểm tra công nhân có thực hiện hay không",
+            d: "Tất cả đều đúng"
+        },
+        correct: "d",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Tỉ lệ RFT cao trong sản xuất thể hiện điều gì? (10 điểm)",
+        options: {
+            a: "Chứng minh chất lượng sản xuất trên chuyền",
+            b: "Hiệu quả của việc thực hiện 3 Don’t/EIQ trên chuyền",
+            c: "Hiện trường sản xuất ổn định, có vấn đề lớn",
+            d: "A và B đúng"
+        },
+        correct: "d",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Yêu cầu về quản lí kim loại và vật dụng sắc nhọn như thế nào đúng? (10 điểm)",
+        options: {
+            a: "Báo biểu kim gãy: đủ mảnh, kí tên đầy đủ, bảo quản hợp lí",
+            b: "Công cụ, dụng cụ sắt nhọn: phải quản lí, có đầy thông tin, cột cố định",
+            c: "Không được sử dụng kim bấm, giày có kim loại phải được qua máy X-RAY",
+            d: "Giày sản xuất trên chuyền phải qua máy rà kim băng tải",
+            e: "Tất cả đều đúng"
+        },
+        correct: "e",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Yêu cầu về quản lí máy móc, thiết bị của hiện trường sản xuất nào dưới đây đúng? (10 điểm)",
+        options: {
+            a: "Máy định hình phải đúng dạng khuôn, size số theo SOP",
+            b: "Máy hơ đế được chỉnh nhiệt độ theo từng chiếc đế bị nặng nhẹ khác nhau",
+            c: "Lò sấy được chỉnh nhiệt độ, thời gian theo ảnh hưởng môi trường",
+            d: "Chỉnh tốc độ băng tải để có sản lượng"
+        },
+        correct: "a",
+        score: 10
+    },
+    {
+        type: "choice",
+        question: "Sử dụng hóa chất như thế nào là đúng nhất ? (10 điểm)",
+        options: {
+            a: "Hóa chất sử dụng được thay đổi tùy ý",
+            b: "Hóa chất sử dụng phải có thông tin và hiển thị đúng SOP",
+            c: "Hóa chất sử dụng được sử dụng liên tục, không cần thay mới",
+            d: "Hóa chất sử dụng không cần tuân thủ SDS"
+        },
         correct: "b",
         score: 10
     },
     {
         type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm nghiêm trọng liên quan Công cụ / Máy moc / SOP? (10 điểm)",
+        question: "Yêu cầu công nhân phải làm gì để tuân thủ được yêu cầu của KH QIP là gì? (10 điểm)",
         options: {
-            a: "Công nhân thao tác chậm hơn tiêu chuẩn",
-            b: "Sử dụng khuôn đúng kiểu nhưng chưa vệ sinh sạch",
-            c: "Máy ép cài đặt sai nhiệt độ và vẫn cho chạy sản xuất",
-            d: "SOP được treo ở khu vực gần chuyền"
+            a: "Công nhân phải ý thức chất lượng tốt, tự làm tự kiểm: nhìn – thao tác – kiểm tra",
+            b: "Công nhân phải nắm được SOP công đoạn mình thực hiện, nắm tiêu chuẩn, trọng điểm thao tác",
+            c: "Công nhân phải mang bao tay khi thực hiện với giày màu trắng hay màu sáng",
+            d: "Tất cả đều đúng"
         },
-        correct: "c",
+        correct: "d",
         score: 10
     },
     {
         type: "choice",
-        question: "Trong kiểm tra thành phẩm (FG Inspection), phát hiện nào KHÔNG được phép xảy ra trong thùng đã được CFQC pass? (10 điểm)",
+        question: "Trách nhiệm của QC như thế nào? (10 điểm)",
         options: {
-            a: "Lỗi ngoại quan nhẹ đã được phân loại",
-            b: "Sai nhãn hoặc đóng gói sai size",
-            c: "Sản phẩm giày B được lưu kho riêng",
-            d: "Dán nhãn phân loại A/B/C rõ ràng"
+            a: "Nắm được thao tác và tiêu chuẩn chất lượng",
+            b: "Kiểm soát chất lượng không được bỏ sót lỗi",
+            c: "Phải thực hiện đúng quy tắc hoạt động đèn Andon",
+            d: "Giày lỗi phải được ghi nhận số lượng vào báo biểu",
+            e: "Tất cả đều đúng"
         },
-        correct: "b",
+        correct: "e",
         score: 10
     },
     {
         type: "choice",
-        question: "Theo quy định Zero Tolerance (ZT), tình huống nào dưới đây ảnh hưởng nghiêm trọng nhất đến điểm audit và độ tin cậy hệ thống? (10 điểm)",
+        question: "Nhiệm vụ chính của CBHT là gì? (10 điểm)",
         options: {
-            a: "QC phát hiện lỗi và báo cáo trễ",
-            b: "Điểm Micro-Pak trong quý là 28",
-            c: "Máy dò kim loại không hoạt động nhưng vẫn cho xuất hàng",
-            d: "Chưa tổ chức chia sẻ QCC trong tháng"
+            a: "Nắm được công đoạn trọng điểm, trọng điểm chất lượng, tiêu chuẩn chất lượng,….. ",
+            b: "Tình hình chất lượng trên chuyền, vấn đề thường phát sinh,………",
+            c: "Cập nhật báo biểu, biểu đồ xương cá,……",
+            d: "Kiểm tra thiết lập máy móc, khu vực sản xuất phải tuân thủ SOP, 6S,…….",
+            e: "Tất cả đều đúng"
         },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trong kiểm soát kho nguyên vật liệu, yêu cầu nào dưới đây bắt buộc phải tuân thủ để phòng ngừa rủi ro mốc? (10 điểm)",
-        options: {
-            a: "Chỉ kiểm soát độ ẩm kho nguyên vật liệu",
-            b: "Độ ẩm kho (nguyên vật liệu / bán thành phẩm / thành phẩm) không vượt quá 60%",
-            c: "Chỉ kiểm tra độ ẩm khi phát sinh khiếu nại",
-            d: "Chấp nhận độ ẩm cao nếu có Micro-Pak"
-        },
-        correct: "b",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Trường hợp nào dưới đây được xem là vi phạm IMQC nghiêm trọng? (10 điểm)",
-        options: {
-            a: "Nguyên vật liệu được lưu kho đúng khu vực nhưng chưa dán nhãn rõ",
-            b: "Nguyên vật liệu chưa áp dụng FIFO nhưng chưa đưa vào sản xuất",
-            c: "Phát hiện nguyên vật liệu bị mốc trong kho",
-            d: "Điểm Micro-Pak trong quý là 15"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "choice",
-        question: "Theo yêu cầu quản lý hóa chất trong IMQC, hành động nào KHÔNG được phép? (10 điểm)",
-        options: {
-            a: "Kiểm soát tồn kho hóa chất theo FIFO",
-            b: "Sử dụng hóa chất đúng loại, còn hạn",
-            c: "Sử dụng hóa chất quá hạn nhưng chưa đưa vào sản xuất",
-            d: "Có hồ sơ kiểm soát hóa chất rõ ràng"
-        },
-        correct: "c",
-        score: 10
-    },
-    {
-        type: "text",
-        question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
-        score: 10
-    },
-    {
-        type: "text",
-        question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
-        keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+        correct: "e",
         score: 10
     }
+    // {
+    //     type: "text",
+    //     question: "ZT02 là gì, kể tên những vấn đề gặp phải sẽ bị ZT02. (10 điểm)",
+    //     keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+    //     score: 10
+    // },
+    // {
+    //     type: "text",
+    //     question: "ZT06 là gì, kể tên những vấn đề gặp phải sẽ bị ZT06. (10 điểm)",
+    //     keywords: ["kiểm tra", "chất lượng", "sản xuất"],  // dùng nếu chấm tự động
+    //     score: 10
+    // }
 ];
 
 /* ===== RENDER ===== */
